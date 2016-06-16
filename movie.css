@@ -1,0 +1,18 @@
+body{
+  background-color: #36648B;
+  font-family: "Courier New", Courier, monospace;
+  color: #8C8F91;
+}
+
+#movieView8{
+  float: left;
+}
+
+div{
+  padding: .25%;
+  margin: .25%;
+}
+
+h1{
+  color: #EAEFF3;
+}
