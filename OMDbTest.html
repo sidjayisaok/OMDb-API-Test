@@ -4,6 +4,7 @@
 	<title>Movie Database</title>
 
 	<link rel="stylesheet" type="text/css" href="reset.css">
+	<link href="https://fonts.googleapis.com/css?family=Trirong" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="movie.css">
@@ -12,62 +13,65 @@
 
 <body>
 
-<div class="text-center">
-	<h1>IMDb Search</h1>
+<header>
+	<div class="text-center">
+		<h1>Moviegazer</h1>
+		<form id="movie-form" class="text-center">
+			<label for="movie-input">search</label>
+			<br><br><input type="text" id="movie-input"><br>
+			<br><input id="findMovie" type="submit" value="Search" class="btn btn-info btn-lg">
+		</form>
+	</div>
+</header>
+
+<div class="container text-center">
+
+	<div id="moviePoster" class="text-center">
+
+	</div>
+
+  <h3><div id="movieTitle" class="text-center">
+
+  </div></h3>
+
+	<div id="movieActors" class="text-center">
+
+	</div>
+
+	<div id="movieRated" class="text-center">
+
+	</div>
+
+	<div id="movieRelease" class="text-center">
+
+	</div>
+
+	<div id="movieRuntime" class="text-center">
+
+	</div>
+
+	<div id="movieRating" class="text-center">
+
+	</div>
+
+	<h5><div id="movieAwards" class="text-center">
+
+	</div></h5>
+
+	<div id="movieWiki" class="text-center">
+
+	</div>
+
 </div>
 
-<div class="container text-center bg-info">
-
-	<div id="moviesView" class="text-center bg-info">
-
-	</div>
-
-	<div id="movieView8" class="text-center bg-info">
-
-	</div>
-
-  <div id="movieView1" class="text-center bg-info">
-
-  </div>
-
-	<div id="movieView2" class="text-center bg-info">
-
-	</div>
-
-	<div id="movieView3" class="text-center bg-info">
-
-	</div>
-
-	<div id="movieView4" class="text-center bg-info">
-
-	</div>
-
-	<div id="movieView5" class="text-center bg-info">
-
-	</div>
-
-	<div id="movieView6" class="text-center bg-info">
-
-	</div>
-
-	<div id="movieView7" class="text-center bg-info">
-
-	</div>
-
-  <form id="movie-form" class="text-center">
-    <label for="movie-input">Movie search</label>
-    <br><br><input type="text" id="movie-input"><br>
-
-    <br><input id="findMovie" type="submit" value="Search" class="btn btn-success btn-sm">
-  </form>
-
 <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js'></script>
 <script src="OMDB.js">
 </script>
 
 </body>
 
-<footer>
-	2016 Sid Jay. API courtesy of OMDb.
+<footer class="text-center">
+	2016 Sid Jay. API courtesy of OMDb/Wikipedia.
 </footer>
 </html>

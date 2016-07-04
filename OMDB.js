@@ -1,29 +1,97 @@
 	$('#findMovie').click(function(){
 
-		var movie = $('#movie-input').val();
+		//search variable
+		var movieOriginal = $('#movie-input').val();
 
-		var queryURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json";
+		//lodash fix for search results
+		var movie = _.startCase(movieOriginal);
+
+		var imdbURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json";
+
+		//IMDB API call
 		$.ajax({
-				url: queryURL,
-				method: 'GET'
+			url: imdbURL,
+			method: 'GET'
 		})
-
-	//look at the object to figure out the format
 		.done(function(response) {
-			$("#movieView1").html(response.Title);
-			$("#movieView2").html(response.Actors);
-			$("#movieView3").html(response.Rated);
-			$("#movieView4").html(response.Released);
-			$("#movieView5").html(response.Runtime);
-			$("#movieView6").html(response.Plot);
-			$("#movieView7").html(response.imdbRating);
+			$("#movieTitle").html(response.Title);
+			$("#movieActors").html(response.Actors);
+			$("#movieRated").html(response.Rated);
+			$("#movieRelease").html(response.Released);
+			$("#movieRuntime").html(response.Runtime);
+			$("#movieRating").html(response.imdbRating);
+			$("#movieAwards").html(response.Awards);
 			//grabbing pictures is a bit more complicated
 			var imageUrl = response.Poster;
 			var img = $("<img>");
 			img.attr('src', imageUrl);
 			img.attr('alt', 'poster');
-			$("#movieView8").empty();
-			$('#movieView8').prepend(img);
-		});
-		return false;
+			$("#moviePoster").empty();
+			$('#moviePoster').prepend(img);
+			});
+
+		//wikipedia API implementation
+		var wikiURL ="http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + movie + "&callback=?";
+
+        $.ajax({
+      	    method: "GET",
+      	    url: wikiURL,
+      	    contentType: "application/json; charset=utf-8",
+      	    async: false,
+      	    dataType: "jsonp",
+      	    success: function (data, textStatus, jqXHR) {
+							$("#movieWiki").empty();
+		            var markup = data.parse.text["*"];
+		        		var div = $("<div>").html(markup);
+		        		// remove links as they will not work
+		        		div.find('a').each(function() {
+							 $(this).replaceWith($(this).html());
+						 });
+        		// remove any references
+        		div.find('sup').remove();
+        		// remove cite error
+        		div.find('.mw-ext-cite-error').remove();
+						//final wiki data scrape
+        		$("#movieWiki").html($(div).find('p'));
+						//in case wikipedia returns too little info, default to IMDB
+						if($("#movieWiki").text().length <= 100) {
+							$("#movieWiki").empty();
+							$.ajax({
+								url: imdbURL,
+								method: 'GET'
+							})
+							.done(function(response){
+								$("#movieWiki").html(response.Plot);
+							});
+						}
+					},
+					error: function (errorMessage) {
+						}
+					});
+
+		//giphy api call
+		var giphyURL = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + movie;
+
+			$.ajax({
+				url: giphyURL,
+				method: 'GET'
+			})
+			.done(function(response) {
+					var imageMP4 = response.data.image_mp4_url
+					$('#moviePoster').on('click', 'img', function(){
+						var giphyVideo = $("<video>");
+						var p = $("<p>");
+						giphyVideo.attr('src', imageMP4);
+						giphyVideo.attr('type', 'video/MP4');
+						giphyVideo.prop('autoplay', true);
+						giphyVideo.prop('loop', true);
+						giphyVideo.prop('controls', true);
+						$("#moviePoster").empty();
+						$("#moviePoster").prepend(p);
+						$('#moviePoster').prepend(giphyVideo);
+					});
+				});
+
+  return false;
+
 	})

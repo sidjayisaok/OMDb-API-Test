@@ -4,8 +4,19 @@ body{
   color: #8C8F91;
 }
 
-#movieView8{
+.container{
+  font-family: 'Trirong', serif;
+  background-color: #305a78;
+  color: #d3d9dd;
+}
+
+header{
+  background-color: #25465d;
+}
+
+img, video{
   float: left;
+  padding: 7.5%;
 }
 
 div{
@@ -13,6 +24,6 @@ div{
   margin: .25%;
 }
 
-h1{
+h1, footer, label{
   color: #EAEFF3;
 }
