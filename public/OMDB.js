@@ -6,7 +6,7 @@
 		//lodash fix for search results
 		var movie = _.startCase(movieOriginal);
 
-		var imdbURL = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json";
+		var imdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json";
 
 		//IMDB API call
 		$.ajax({
@@ -24,14 +24,19 @@
 			//grabbing pictures is a bit more complicated
 			var imageUrl = response.Poster;
 			var img = $("<img>");
-			img.attr('src', imageUrl);
+			//error handler
+			var errorPic = "http://clipartix.com/wp-content/uploads/2016/06/Movie-reel-clipart-border-free-clipart-images.png";
+			img.error(function(){
+				img.attr('src', errorPic);
+			})
+			.attr('src', imageUrl);
 			img.attr('alt', 'poster');
 			$("#moviePoster").empty();
 			$('#moviePoster').prepend(img);
 			});
 
 		//wikipedia API implementation
-		var wikiURL ="http://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + movie + "&callback=?";
+		var wikiURL ="https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=" + movie + "&callback=?";
 
         $.ajax({
       	    method: "GET",
@@ -70,7 +75,7 @@
 					});
 
 		//giphy api call
-		var giphyURL = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + movie;
+		var giphyURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + movie;
 
 			$.ajax({
 				url: giphyURL,
