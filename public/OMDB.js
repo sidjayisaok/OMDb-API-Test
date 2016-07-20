@@ -6,7 +6,8 @@
 		//lodash fix for search results
 		var movie = _.startCase(movieOriginal);
 
-		var imdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&r=json";
+		//added rotten tomatoes API
+		var imdbURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=long&r=json&tomatoes=true";
 
 		//IMDB API call
 		$.ajax({
@@ -15,11 +16,13 @@
 		})
 		.done(function(response) {
 			$("#movieTitle").html(response.Title);
-			$("#movieActors").html(response.Actors);
-			$("#movieRated").html(response.Rated);
+			$("#movieActors").html("Starring " + response.Actors);
+			$("#movieRated").html("Rated " + response.Rated);
 			$("#movieRelease").html(response.Released);
 			$("#movieRuntime").html(response.Runtime);
-			$("#movieRating").html(response.imdbRating);
+			$("#movieRating").html("IMDb rates this a " + response.imdbRating);
+			$("#tomatoesRating").html("Rotten Tomatoes rates this a " + response.tomatoRating);
+			$("#movieLanguage").html("Languages include: " + response.Language);
 			$("#movieAwards").html(response.Awards);
 			//grabbing pictures is a bit more complicated
 			var imageUrl = response.Poster;
