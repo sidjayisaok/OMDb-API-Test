@@ -1,4 +1,4 @@
-	$('#findMovie').click(function(){
+	$('#findMovie').on('click', function(){
 
 		//search variable
 		var movieOriginal = $('#movie-input').val();
@@ -28,7 +28,26 @@
 			var imageUrl = response.Poster;
 			var img = $("<img>");
 			//error handler
-			var errorPic = "http://clipartix.com/wp-content/uploads/2016/06/Movie-reel-clipart-border-free-clipart-images.png";
+			var errorPic = "https://i.imgur.com/McrUIih.png";
+			//animate.css logic for poster
+			var bounceClass ='animated zoomIn';
+			var flipClass ='animated flip';
+			var endClass ='webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+			//this makes the buttons animate when clicked
+			$(img).on({
+					'click': function(){
+							$(img).addClass(bounceClass).one(endClass, function(){
+									$(this).removeClass(bounceClass);
+							})
+					},
+			//this makes the buttons animate when hovering over them via the mouse
+					'mouseover': function(){
+							$(img).addClass(flipClass).one(endClass, function(){
+									$(this).removeClass(flipClass);
+							})
+					}
+			});
+			//error handling and poster logic
 			img.error(function(){
 				img.attr('src', errorPic);
 			})
@@ -76,29 +95,6 @@
 					error: function (errorMessage) {
 						}
 					});
-
-		//giphy api call
-		var giphyURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + movie;
-
-			$.ajax({
-				url: giphyURL,
-				method: 'GET'
-			})
-			.done(function(response) {
-					var imageMP4 = response.data.image_mp4_url
-					$('#moviePoster').on('click', 'img', function(){
-						var giphyVideo = $("<video>");
-						var p = $("<p>");
-						giphyVideo.attr('src', imageMP4);
-						giphyVideo.attr('type', 'video/MP4');
-						giphyVideo.prop('autoplay', true);
-						giphyVideo.prop('loop', true);
-						giphyVideo.prop('controls', true);
-						$("#moviePoster").empty();
-						$("#moviePoster").prepend(p);
-						$('#moviePoster').prepend(giphyVideo);
-					});
-				});
 
   return false;
 

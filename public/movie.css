@@ -10,6 +10,10 @@ body{
   color: #d3d9dd;
 }
 
+.noFloat{
+  float:none;
+}
+
 header{
   background-color: #25465d;
 }
