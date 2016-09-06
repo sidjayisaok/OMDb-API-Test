@@ -1,5 +1,12 @@
 	$('#findMovie').on('click', function(){
 
+		//animate.css logic for poster
+		var bounceClass ='animated zoomIn';
+		var flipClass ='animated flip';
+		var endClass ='webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+		//error handler
+		var errorPic = "https://i.imgur.com/McrUIih.png";
+
 		//search variable
 		var movieOriginal = $('#movie-input').val();
 
@@ -27,20 +34,14 @@
 			//grabbing pictures is a bit more complicated
 			var imageUrl = response.Poster;
 			var img = $("<img>");
-			//error handler
-			var errorPic = "https://i.imgur.com/McrUIih.png";
-			//animate.css logic for poster
-			var bounceClass ='animated zoomIn';
-			var flipClass ='animated flip';
-			var endClass ='webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-			//this makes the buttons animate when clicked
+			//this makes the poster image animate when clicked
 			$(img).on({
 					'click': function(){
 							$(img).addClass(bounceClass).one(endClass, function(){
 									$(this).removeClass(bounceClass);
 							})
 					},
-			//this makes the buttons animate when hovering over them via the mouse
+			//this makes the poster image animate when hovering over them via the mouse
 					'mouseover': function(){
 							$(img).addClass(flipClass).one(endClass, function(){
 									$(this).removeClass(flipClass);
