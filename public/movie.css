@@ -4,6 +4,18 @@ body{
   color: #8C8F91;
 }
 
+body:before {
+    background-image: url("tile_repeat.jpg");
+    background-attachment: fixed;
+    content: "";
+    height: 300%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .1;
+}
+
 .container{
   font-family: 'Trirong', serif;
   background-color: #305a78;
