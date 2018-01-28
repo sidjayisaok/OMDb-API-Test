@@ -1,32 +1,24 @@
 <html>
 
 <head>
-	<title>Movie Database</title>
+	<title>MovieGazer: OMDB API demo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="reset.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Trirong" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="movie.css">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/movie.css">
 
 </head>
 
-<body>
+<body ng-app="movieApp" ng-controller="movieController">
 
-<header>
-	<div class="text-center animated bounce">
-		<i class="fa fa-video-camera animated slideInLeft" aria-hidden="true"></i>
-			<h1>Moviegazer</h1>
-		<i class="fa fa-video-camera animated slideInRight" aria-hidden="true"></i>
-		<form id="movie-form" class="text-center animated slideInLeft">
-			<label for="movie-input">search</label>
-			<br><br><input type="text" id="movie-input"><br>
-			<br><input id="findMovie" type="submit" value="Search" class="btn btn-info btn-lg">
-		</form>
-	</div>
-</header>
+<div class="text-center animated bounce">
+	<h1>Moviegazer</h1>
+</div>
 
 <div class="container text-center animated slideInUp">
 
@@ -34,88 +26,41 @@
   <div class="col-md-4"></div>
 
   <div class ="text-center animated slideInRight container col-md-4">
-		<i class="fa fa-film animated slideInLeft" aria-hidden="true"></i>
 		<h4>Search the latest and greatest movies</h4>
-		<i class="fa fa-film animated slideInLeft" aria-hidden="true"></i>
 		<div class="piechart"></div>
+		<form id="movie-form" class="text-center animated slideInLeft">
+			<input type="text" id="movie-input" value="Up">
+			<input id="findMovie" type="submit" value="OMDB Search" class="omdb_button">
+		</form>		
   </div>
 
   <div class="col-md-4"></div>
 
-	<div class ="container col-md-12">
+  <div class="col-md-6">
+	<omdb-image></omdb-image>
+  </div>
 
-		<div class="col-md-2"></div>
-
-		<div id="moviePoster" class="text-center col-md-4">
-
-		</div>
-
-		<div class="col-md-2"></div>
-
-		<div class="col-md-4">
-
-			<h3><div id="movieTitle" class="text-center sweep">
-
-			</div></h3>
-
-			<div id="movieActors" class="text-center sweep">
-
-			</div>
-
-			<div id="movieRated" class="text-center sweep">
-
-			</div>
-
-			<div id="movieRelease" class="text-center sweep">
-
-			</div>
-
-			<div id="movieRuntime" class="text-center sweep">
-
-			</div>
-
-			<div id="movieRating" class="text-center sweep">
-
-			</div>
-
-			<div id="tomatoesRating" class="text-center sweep">
-
-			</div>
-
-			<div id="movieLanguage" class="text-center sweep">
-
-			</div>
-
-			<h5><div id="movieAwards" class="text-center sweep">
-
-			</div></h5>
-
-		</div>
-
-		<div class="col-md-2"></div>
-
-		<div id="piegraph" class="col-md-8 text-center"></div>
-
-		<div class="col-md-2"></div>
-
-		<div id="movieWiki" class="col-md-12 text-center sweep">
-
-		</div>
-
-	</div>
+  <div class="col-md-6">
+	  <omdb-summary></omdb-summary>
+  </div>
 
 
 </div>
 
-<script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<!-- <script src='https://code.jquery.com/jquery-2.1.3.min.js'></script> -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-<script src="OMDB.js">
-</script>
+<!-- <script src="js/OMDB.js"></script> -->
+<script src="js/module.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/directives.js"></script>
+<script src="js/imdb.js"></script>
+<!-- <script src="js/wiki.js"></script> -->
 
 </body>
 
 <footer class="text-center">
-	2016 Sid Jay. API courtesy of OMDb/Wikipedia. Using animate.css.
+	2018 Sid Jay. API courtesy of OMDb/Wikipedia. Using animate.css.
 </footer>
 </html>
