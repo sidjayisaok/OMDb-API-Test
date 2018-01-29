@@ -16,39 +16,43 @@
 
 <body ng-app="movieApp" ng-controller="movieController">
 
-<div class="text-center animated bounce">
-	<h1>Moviegazer</h1>
-</div>
+<div id="main-background" class="container text-center animated slideInUp">
 
-<div class="container text-center animated slideInUp">
+	<div class="col-md-4"></div>
 
-
-  <div class="col-md-4"></div>
-
-  <div class ="text-center animated slideInRight container col-md-4">
+	<div class ="text-center animated slideInRight container col-md-4">
+		<h1>MovieGazer: an OMDB API demo</h1>
 		<h4>Search the latest and greatest movies</h4>
 		<div class="piechart"></div>
 		<form id="movie-form" class="text-center animated slideInLeft">
-			<input type="text" id="movie-input" value="Up">
+			<label for="movie-input">search</label>
+			<input type="text" id="movie-input" value="The Lion King">
 			<input id="findMovie" type="submit" value="OMDB Search" class="omdb_button">
 		</form>		
-  </div>
+	</div>
 
-  <div class="col-md-4"></div>
+	<div class="col-md-4"></div>
 
-  <div class="col-md-6">
-	<omdb-image></omdb-image>
-  </div>
+	<div class="container col-md-12">
 
-  <div class="col-md-6">
-	  <omdb-summary></omdb-summary>
-  </div>
+		<div class="col-md-1"></div>
 
+		<div class="col-md-5 banner-set">
+			<omdb-image></omdb-image>
+		</div>
+		
+		<div class="col-md-5 banner-set">
+			<omdb-summary></omdb-summary>
+		</div>
+		
+		<div class="col-md-1"></div>
+		
+	</div>
 
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-<!-- <script src='https://code.jquery.com/jquery-2.1.3.min.js'></script> -->
+<script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 <!-- <script src="js/OMDB.js"></script> -->

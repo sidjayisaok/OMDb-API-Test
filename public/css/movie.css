@@ -1,14 +1,31 @@
-body{
-  background-color: #404080;
+body {
+  background-color: #2f2f2f;
   font-family: "Courier New", Courier, monospace;
   color: #8C8F91;
 }
 
-.container{
+#main-background {
+  min-height: 90%;
+  border: 1px solid #222222;
+  background-color: #25465d;
+  margin: 50px auto;
+}
+
+omdb-summary, omdb-image {
+  line-height: 16px;
+  text-align: left;
+  font-size: 12px;
+}
+
+.banner-set {
+  border: 1px solid #404040;
+  background-color: #204050;
+  margin: 10px;
+}
+
+.container {
   font-family: 'Trirong', serif;
-  background-color: #305a78;
   color: #d3d9dd;
-  min-height: 50%;
 }
 
 #movie-input {
@@ -17,7 +34,8 @@ body{
 }
 
 .omdb_button {
-  border-radius: 5px;
+  border-radius: 3px;
+  border: 1px solid #444444;
   padding: 10px;
   background-color: #222222;
   color: #f1f1f1;
@@ -32,8 +50,7 @@ header{
 }
 
 img, video{
-  float: left;
-  padding: 7.5%;
+  padding: 0px 20px;
 }
 
 div{
