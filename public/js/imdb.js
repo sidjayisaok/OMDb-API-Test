@@ -238,6 +238,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
             }
 
+            if(xhr.status === 400){
+                console.log("Oops! Looks like the site is down! Error message: " + xhr.status);
+            }
+
             else {
                 console.log('An error occured: ' + xhr.status);
             }
