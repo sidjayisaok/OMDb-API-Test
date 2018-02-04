@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", function(){
 
     //An API key is needed for IMDb now :-/
-    // const omdbButton = document.querySelector("#findMovie");
     const getResults = document.querySelector("omdb-summary");
     const getImage = document.querySelector("omdb-image");
     let movieInput = document.querySelector("#movie-input");
     let findMovie = document.querySelector("#findMovie");
-    let bannerSet = document.querySelectorAll('.banner-set');
+    let bannerSet = document.querySelectorAll('.main-banner');
     // let movieArray = [];
     
     // const clearScreen = ()=> {
@@ -16,8 +15,6 @@ document.addEventListener("DOMContentLoaded", function(){
     // }
 
     const imdbGet = (param)=> {
-
-        // clearScreen();
 
         let movieSearch = param.value;
 
@@ -44,6 +41,31 @@ document.addEventListener("DOMContentLoaded", function(){
                     getResults() {   
                     console.log(this.movieResults);         
                     }
+
+                    getPhoto() {
+                        let imdbPosterResults = this.movieResults.Poster;
+                        let imdbWebsiteResults = this.movieResults.Website;
+                        let div14 = document.createElement('div');
+                        let posterImg = document.createElement('img');
+                        let linkImg = document.createElement('a');
+                        linkImg.setAttribute('href', imdbWebsiteResults);
+                        posterImg.setAttribute("src", imdbPosterResults);
+                        linkImg.appendChild(posterImg);
+                        div14.appendChild(linkImg);
+                        getImage.appendChild(div14);
+
+                        console.log(this.movieResults.Poster);
+                    }
+                    
+                    getMoviePlot() {
+                        let plotResults = "Synopsis: " + this.movieResults.Plot;
+                        let div9 = document.createElement('div');
+                        let plotBox = document.createTextNode(plotResults);
+                        div9.appendChild(plotBox);
+                        getResults.appendChild(div9);
+
+                        console.log("Synopsis: " + this.movieResults.Plot);
+                    }                       
 
                     getActors() {
                         let actorsResults = this.movieResults.Title + " stars: " + this.movieResults.Actors;
@@ -132,17 +154,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         getResults.appendChild(div8);
 
                         console.log(this.movieResults.Title + " was produced by " + this.movieResults.Production + ".");
-                    }
-
-                    getMoviePlot() {
-                        let plotResults = "Synopsis: " + this.movieResults.Plot;
-                        let div9 = document.createElement('div');
-                        let plotBox = document.createTextNode(plotResults);
-                        div9.appendChild(plotBox);
-                        getResults.appendChild(div9);
-
-                        console.log("Synopsis: " + this.movieResults.Plot);
-                    }               
+                    }            
 
                     getIMDBRatings() {
                         let imdbRatingsResults = this.movieResults.Ratings[0].Source + " has it rated at " + this.movieResults.Ratings[0].Value + ".";
@@ -172,7 +184,6 @@ document.addEventListener("DOMContentLoaded", function(){
                         let tomatoBox = document.createTextNode(tomatoResults);
                         div11.appendChild(tomatoBox);
                         getResults.appendChild(div11);
-
                     }
 
                     getMetaScore() {
@@ -195,21 +206,6 @@ document.addEventListener("DOMContentLoaded", function(){
                         console.log(this.movieResults.Title + " currently has " + this.movieResults.imdbVotes + " votes on Internet Movie Database.");
                     }
 
-                    getPhoto() {
-                        let imdbPosterResults = this.movieResults.Poster;
-                        let imdbWebsiteResults = this.movieResults.Website;
-                        let div14 = document.createElement('div');
-                        let posterImg = document.createElement('img');
-                        let linkImg = document.createElement('a');
-                        linkImg.setAttribute('href', imdbWebsiteResults);
-                        posterImg.setAttribute("src", imdbPosterResults);
-                        linkImg.appendChild(posterImg);
-                        div14.appendChild(linkImg);
-                        getImage.appendChild(div14);
-
-                        console.log(this.movieResults.Poster);
-                    }
-
                     getDVD() {
                         let dvdResults = "DVD release: " + this.movieResults.DVD;
                         let div15 = document.createElement('div');
@@ -229,23 +225,12 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
 
                 let omdbResults = new omdbReturn(results);
-                omdbResults.getResults(results);                
-                omdbResults.getPhoto(results);
-                omdbResults.getMoviePlot(results);
-                omdbResults.getActors(results);
-                omdbResults.getMovieDirector(results);
-                omdbResults.getMovieAwards(results);
-                omdbResults.getReleaseDate(results);
-                omdbResults.getRunTime(results);              
-                omdbResults.getMovieProducers(results);
-                omdbResults.getRottenTomatoesRating(results);
-                omdbResults.getIMDBRatings(results);
-                omdbResults.getMetaScore(results);
-                omdbResults.getIMDBVotes(results);
-                omdbResults.getMovieRating(results);                
-                omdbResults.getDVD(results);
-                omdbResults.getYear(results);
-                omdbResults.getBoxOffice(results);                
+
+                let finalClass =  Object.getOwnPropertyNames(omdbReturn.prototype);
+
+                for (var j = 1; j < finalClass.length; j++){
+                    omdbResults[finalClass[j]](results);
+                }              
 
             }
 
@@ -266,6 +251,7 @@ document.addEventListener("DOMContentLoaded", function(){
     imdbGet(movieInput);
 
     findMovie.addEventListener('click', function(){
+        // clearScreen();
         imdbGet(movieInput);
     });
 

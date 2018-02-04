@@ -3,71 +3,65 @@
 <head>
 	<title>MovieGazer: OMDB API demo</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Trirong" rel="stylesheet">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/movie.css">
-
 </head>
 
 <body ng-app="movieApp" ng-controller="movieController">
 
-<div id="main-background" class="container text-center animated slideInUp">
+	<div id="main-background" class="container text-center animated slideInUp">
 
-	<div class="col-md-4"></div>
+		<div class="col-md-4"></div>
 
-	<div class ="text-center animated slideInRight container col-md-4">
-		<h1>MovieGazer: an OMDB API demo</h1>
-		<h4>Search the latest and greatest movies</h4>
-		<div class="piechart"></div>
-		
-		<form id="movie-form" class="text-center">
-			<label for="movie-input" placeholder="Search the IMDb"></label>
-			<input type="text" id="movie-input" value="The Lion King">
-			<input id="findMovie" type="submit" value="OMDb Search" class="omdb_button" />
-		</form>
+		<div class ="text-center animated slideInRight container col-md-4">
+			<h1>MovieGazer: an OMDB API demo</h1>
+			<h4>Search the latest and greatest movies</h4>
+			<div class="piechart"></div>
+			
+			<form id="movie-form" class="text-center">
+				<label for="movie-input" placeholder="Search the IMDb"></label>
+				<input type="text" id="movie-input" value="The Lion King">
+				<input id="findMovie" type="submit" value="OMDb Search" class="omdb_button" />
+			</form>
 
+
+		</div>
+
+		<div class="col-md-4"></div>
+
+		<div class="container col-md-12 main-banner">
+
+			<div class="col-md-1"></div>
+
+			<div class="col-md-5 banner-set">
+				<omdb-image></omdb-image>
+			</div>
+			
+			<div class="col-md-5 banner-set">
+				<omdb-summary></omdb-summary>
+			</div>
+			
+			<div class="col-md-1"></div>
+			
+		</div>
 
 	</div>
 
-	<div class="col-md-4"></div>
-
-	<div class="container col-md-12">
-
-		<div class="col-md-1"></div>
-
-		<div class="col-md-5 banner-set">
-			<omdb-image></omdb-image>
-		</div>
-		
-		<div class="col-md-5 banner-set">
-			<omdb-summary></omdb-summary>
-		</div>
-		
-		<div class="col-md-1"></div>
-		
-	</div>
-
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
-<!-- <script src='https://code.jquery.com/jquery-2.1.3.min.js'></script> -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js'></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-<!-- <script src="js/OMDB.js"></script> -->
-<script src="js/module.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/directives.js"></script>
-<script src="js/imdb.js"></script>
-<!-- <script src="js/wiki.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js'></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+	<script src="js/module.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/directives.js"></script>
+	<script src="js/imdb.js"></script>
 
 </body>
 
 <footer class="text-center">
-	2018 Sid Jay. API courtesy of OMDb/Wikipedia. Using animate.css.
+	2018 Sid Jay. API courtesy of OMDb.
 </footer>
 </html>
