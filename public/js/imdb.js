@@ -1,20 +1,31 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-        //An API key is needed for IMDb now :-/
-    const omdbButton = document.querySelector("#findMovie");
+    //An API key is needed for IMDb now :-/
+    // const omdbButton = document.querySelector("#findMovie");
     const getResults = document.querySelector("omdb-summary");
     const getImage = document.querySelector("omdb-image");
-    let movieButton = document.querySelector("#movie-input");
-    let movieInput = movieButton.attributes.value.textContent;
+    let movieInput = document.querySelector("#movie-input");
+    let findMovie = document.querySelector("#findMovie");
+    let bannerSet = document.querySelectorAll('.banner-set');
+    // let movieArray = [];
+    
+    // const clearScreen = ()=> {
+    //     for(var i = 0; i < bannerSet.length; i++){
+    //         bannerSet[i].removeChild(bannerSet[i].firstChild);
+    //     }
+    // }
 
-    function imdbGet(param){
+    const imdbGet = (param)=> {
 
-        movieButton.setAttribute('value', param);
-        console.log(movieButton.attributes);
+        // clearScreen();
+
+        let movieSearch = param.value;
+
+        console.log(movieSearch);
 
         const xhr = new XMLHttpRequest();
 
-        let imdbURL = "https://www.omdbapi.com/?t=" + movieInput + "&y=&plot=long&r=json&tomatoes=true&apikey=a530764b";
+        let imdbURL = "https://www.omdbapi.com/?t=" + movieSearch + "&y=&plot=long&r=json&tomatoes=true&apikey=a530764b";
 
         xhr.open('GET', imdbURL);
 
@@ -238,28 +249,28 @@ document.addEventListener("DOMContentLoaded", function(){
 
             }
 
+            if(xhr.status === 200) {
+                console.log('Everything\'s is a-ok on our end. Status message: ' + xhr.status);
+            }            
+
             if(xhr.status === 400){
                 console.log("Oops! Looks like the site is down! Error message: " + xhr.status);
             }
-
-            else {
-                console.log('An error occured: ' + xhr.status);
-            }
-
-            return false;
         }
 
         xhr.send();
 
         return false;
-    };
+    }
 
-    let returnIMDB = imdbGet(movieInput);
+    imdbGet(movieInput);
 
-    omdbButton.addEventListener('click', imdbGet);
+    findMovie.addEventListener('click', function(){
+        imdbGet(movieInput);
+    });
 
-    returnIMDB;
 });
+
 
 
 
