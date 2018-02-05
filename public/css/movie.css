@@ -11,7 +11,7 @@ body {
   margin: 50px auto;
 }
 
-omdb-summary, omdb-image {
+.omdb-summary, .omdb-image {
   line-height: 16px;
   text-align: left;
   font-size: 12px;

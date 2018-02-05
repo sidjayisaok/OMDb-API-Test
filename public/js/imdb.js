@@ -1,16 +1,15 @@
 document.addEventListener("DOMContentLoaded", function(){
 
     //An API key is needed for IMDb now :-/
-    const getResults = document.querySelector("omdb-summary");
-    const getImage = document.querySelector("omdb-image");
+    const getResults = document.querySelector(".omdb-summary");
+    const getImage = document.querySelector(".omdb-image");
     let movieInput = document.querySelector("#movie-input");
     let findMovie = document.querySelector("#findMovie");
-    let bannerSet = document.querySelectorAll('.main-banner');
-    // let movieArray = [];
+    let bannerSet = document.querySelector('omdb-summary');
     
     // const clearScreen = ()=> {
     //     for(var i = 0; i < bannerSet.length; i++){
-    //         bannerSet[i].removeChild(bannerSet[i].firstChild);
+    //         bannerSet[i].removeChild(bannerSet[i].childNodes[i]);
     //     }
     // }
 
@@ -216,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
                     getYear() {
                         let yearResults = "Year: " + this.movieResults.Year;
-                        let div16 =document.createElement('div');
+                        let div16 = document.createElement('div');
                         let yearResultsBox = document.createTextNode(yearResults);
                         div16.appendChild(yearResultsBox);
                         getImage.appendChild(div16);

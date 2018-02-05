@@ -1,12 +1,12 @@
 movieApp.directive('omdbImage', function(){
     return {
-        restrict : 'E',
+        restrict : 'C',
         templateUrl : '../omdb-image.htm'
     };
 })
 .directive('omdbSummary', function(){
     return {
-        restrict : 'E',
+        restrict : 'C',
         templateUrl : '../omdb-summary.htm'
     };
 });
